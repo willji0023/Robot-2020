@@ -29,4 +29,3 @@ void PublishNode::PushMessage(P p) {
 }
 
 }  // namespace frc3512
-
