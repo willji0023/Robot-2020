@@ -2,13 +2,17 @@
 
 #pragma once
 
+#include <frc/Joystick.h>
 #include <frc/TimedRobot.h>
 
 #include "Constants.hpp"
+#include "subsystems/Flywheel.hpp"
 
 namespace frc3512 {
 
-class Robot : public frc::TimedRobot {
+using namespace frc3512::Constants::Robot;
+
+class Robot : public frc::TimedRobot, public PublishNode {
 public:
     Robot();
 
@@ -23,6 +27,8 @@ public:
     void TeleopPeriodic() override;
 
 private:
+    Flywheel m_flywheel;
+    frc::Joystick m_driveStick1{kDriveStick1Port};
 };
 
 }  // namespace frc3512
