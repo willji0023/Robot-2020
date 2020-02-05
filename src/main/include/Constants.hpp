@@ -6,6 +6,12 @@ namespace frc3512 {
 namespace Constants {
 
 namespace Intake {
+
+//Motor Set Values
+constexpr double kMotorIdle = 0.0;
+constexpr double kMotorForward = 1.0;
+constexpr double kMotorReverse = -1.0;
+
 //Arm Motor Port
 constexpr int kArmMotorPort = 3;
 
