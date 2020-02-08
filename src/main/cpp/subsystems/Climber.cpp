@@ -11,8 +11,14 @@ using namespace frc3512::Constants::Climber;
 Climber::Climber(frc::PowerDistributionPanel& pdp)
     : PublishNode("Climber"), m_pdp(pdp) {}
 
-void SetTransverser(TransverserState transverserState) {
-    if ()
+void Climber::SetTransverser(TransverserState transverserState) {
+    if (transverserState == TransverserState::kLeft) {
+        m_transverser.Set(kMotorForward);
+    } else if (transverserState == TransverserState::kRight) {
+        m_transverser.Set(kMotorReverse);
+    } else {
+        m_transverser.Set(kMotorIdle);
+    }
 }
 
 // Note: Set values are not yet fixed.
@@ -29,16 +35,6 @@ void Climber::ElevatorDescend() {
 void Climber::ElevatorIdle() {
     m_armL.Set(0.0);
     m_armR.Set(0.0);
-}
-
-void Climber::SubsystemPeriodic() {
-    if (m_appendageStick.GetRawButton(11)) {
-        m_transverser.Set(1.0);
-    } else if (m_appendageStick.GetRawButton(12)) {
-        m_transverser.Set(-1.0);
-    } else {
-        m_transverser.Set(0.0);
-    }
 }
 
 void Climber::ProcessMessage(const ButtonPacket& message) {
@@ -59,5 +55,18 @@ void Climber::ProcessMessage(const ButtonPacket& message) {
         ElevatorDescend();
     } else {
         ElevatorIdle();
+    }
+    if (message.topic == "Robot/AppendageStick" && message.button == 11 &&
+        message.pressed) {
+        SetTransverser(TransverserState::kLeft);
+    } else if (message.topic == "Robot/AppendageStick" &&
+               message.button == 12 && message.pressed) {
+        SetTransverser(TransverserState::kRight);
+    } else if (message.topic == "Robot/AppendageStick" &&
+               message.button == 11 && !message.pressed) {
+        SetTransverser(TransverserState::kIdle);
+    } else if (message.topic == "Robot/AppendageStick" &&
+               message.button == 12 && !message.pressed) {
+        SetTransverser(TransverserState::kIdle);
     }
 }

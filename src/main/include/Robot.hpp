@@ -7,8 +7,11 @@
 
 #include "Constants.hpp"
 #include "communications/PublishNode.hpp"
+#include "subsystems/Climber.hpp"
 
 namespace frc3512 {
+
+using namespace frc3512::Constants::Robot;
 
 class Robot : public frc::TimedRobot, public PublishNode {
 public:
@@ -23,8 +26,8 @@ public:
     void DisabledPeriodic() override;
     void AutonomousPeriodic() override;
     void TeleopPeriodic() override;
-
 private:
+    Climber m_climber;
     frc::Joystick m_driveStick1{Constants::Robot::kDriveStick1Port};
     frc::Joystick m_driveStick2{Constants::Robot::kDriveStick2Port};
     frc::Joystick m_appendageStick{Constants::Robot::kAppendageStickPort};

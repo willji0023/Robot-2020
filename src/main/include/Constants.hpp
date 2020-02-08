@@ -19,6 +19,10 @@ constexpr int kArmPortL = 4;
 constexpr int kArmPortR = 5;
 // Transverser Motor
 constexpr int kTransverserPort = 6;
+//Transverser Set Values; Note: Set values are not yet fixed.
+constexpr double kMotorIdle = 0.0;
+constexpr double kMotorForward = 1.0;
+constexpr double kMotorReverse = -1.0;
 // Wrangler Winch Motor
 constexpr int kWinchPort = 7;
 

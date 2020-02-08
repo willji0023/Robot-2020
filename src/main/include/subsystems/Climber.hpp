@@ -15,7 +15,7 @@ namespace frc3512 {
 
 class Climber : public SubsystemBase, public PublishNode {
 public:
-    enum class TransverserState { kForward, kReverse, kIdle };
+    enum class TransverserState { kLeft, kRight, kIdle };
     /**
      * Constructs a Climber.
      *
@@ -30,8 +30,6 @@ public:
     void ElevatorDescend();
 
     void ElevatorIdle();
-
-    void SubsystemPeriodic();
 
     void ProcessMessage(const ButtonPacket& message);
 
