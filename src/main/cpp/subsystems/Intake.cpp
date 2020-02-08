@@ -7,20 +7,15 @@ using namespace frc3512::Constants::Intake;
 
 Intake::Intake() : PublishNode("Intake") {}
 
-void Intake::Deploy() {
-    m_arm.Set(true);
-}
+void Intake::Deploy() { m_arm.Set(true); }
 
-void Intake::Stow() {
-    m_arm.Set(false);
-}
+void Intake::Stow() { m_arm.Set(false); }
 
-bool Intake::IsDeployed() const {
-    return m_arm.Get();
-}
+bool Intake::IsDeployed() const { return m_arm.Get(); }
 /**
- * At the moment, the armMotor set values are not fixed; neither are the funnel's and conveyor's.
- * NOTE: All three motors (arm's motor, funnel's motor, conveyor's motor) are now set to fixed values.
+ * At the moment, the armMotor set values are not fixed; neither are the
+ * funnel's and conveyor's. NOTE: All three motors (arm's motor, funnel's motor,
+ * conveyor's motor) are now set to fixed values.
  */
 void Intake::SetArmMotor(ArmMotorState armMotorState) {
     if (armMotorState == ArmMotorState::kIntake) {
@@ -38,35 +33,31 @@ void Intake::FeedBalls() {
     m_conveyorMotor.Set(kMotorReverse);
 }
 
-bool Intake::IsUpperEnabled() const {
-    return m_upperSensor.GetValue() == 0;
-}
+bool Intake::IsUpperEnabled() const { return m_upperSensor.GetValue() == 0; }
 
-bool Intake::IsLowerEnabled() const {
-    return m_lowerSensor.GetValue() == 0;
-}
+bool Intake::IsLowerEnabled() const { return m_lowerSensor.GetValue() == 0; }
 
 void Intake::ProcessMessage(const ButtonPacket& message) {
-    if (message.topic == "Robot/AppendageStick" &&
-        message.button == 4 && message.pressed) {
+    if (message.topic == "Robot/AppendageStick" && message.button == 4 &&
+        message.pressed) {
         SetArmMotor(ArmMotorState::kIntake);
-    } else if (message.topic == "Robot/AppendageStick" &&
-               message.button == 6 && message.pressed) {
+    } else if (message.topic == "Robot/AppendageStick" && message.button == 6 &&
+               message.pressed) {
         SetArmMotor(ArmMotorState::kOuttake);
-    } else if (message.topic == "Robot/AppendageStick" &&
-               message.button == 4 && !message.pressed) {
+    } else if (message.topic == "Robot/AppendageStick" && message.button == 4 &&
+               !message.pressed) {
         SetArmMotor(ArmMotorState::kIdle);
-    } else if (message.topic == "Robot/AppendageStick" &&
-               message.button == 6 && !message.pressed) {
+    } else if (message.topic == "Robot/AppendageStick" && message.button == 6 &&
+               !message.pressed) {
         SetArmMotor(ArmMotorState::kIdle);
     }
-    if (message.topic == "Robot/AppendageStick" &&
-        message.button == 3 && message.pressed) {
-           if (IsDeployed()) {
-               Stow();
-           } else if (!IsDeployed()) {
-               Deploy();
-           }
+    if (message.topic == "Robot/AppendageStick" && message.button == 3 &&
+        message.pressed) {
+        if (IsDeployed()) {
+            Stow();
+        } else if (!IsDeployed()) {
+            Deploy();
+        }
     }
 }
 
@@ -83,15 +74,14 @@ void Intake::SubsystemPeriodic() {
         case State::kDropBalls: {
             if (IsLowerEnabled() && IsUpperEnabled())
                 m_conveyorMotor.Set(kMotorForward);
-                m_funnelMotor.Set(kMotorIdle);
-                m_state = State::kRaiseBalls;
+            m_funnelMotor.Set(kMotorIdle);
+            m_state = State::kRaiseBalls;
             break;
         }
         case State::kRaiseBalls: {
-            if (IsUpperEnabled())
-                m_conveyorMotor.Set(kMotorIdle);
-                m_state = State::kIdle;
+            if (IsUpperEnabled()) m_conveyorMotor.Set(kMotorIdle);
+            m_state = State::kIdle;
             break;
-        }   
+        }
     }
 }
