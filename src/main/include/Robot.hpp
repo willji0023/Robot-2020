@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include <frc/DriverStation.h>
 #include <frc/Joystick.h>
 #include <frc/TimedRobot.h>
 
@@ -26,6 +27,7 @@ public:
     void DisabledPeriodic() override;
     void AutonomousPeriodic() override;
     void TeleopPeriodic() override;
+
 private:
     Climber m_climber;
     frc::Joystick m_driveStick1{Constants::Robot::kDriveStick1Port};

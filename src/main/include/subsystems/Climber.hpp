@@ -14,21 +14,15 @@ namespace frc3512 {
 
 class Climber : public SubsystemBase, public PublishNode {
 public:
-    enum class TransverserState { kLeft, kRight, kIdle };
-    
     Climber();
 
-    void SetTransverser(TransverserState transverserState);
+    void SetTransverser(double speed);
 
-    void ElevatorAscend();
-
-    void ElevatorDescend();
-
-    void ElevatorIdle();
+    void SetElevator(double speed);
 
     void ProcessMessage(const ButtonPacket& message);
 
-private:
+private:  
     rev::CANSparkMax m_armL{Constants::Climber::kArmPortL,
                             rev::CANSparkMax::MotorType::kBrushless};
     rev::CANSparkMax m_armR{Constants::Climber::kArmPortR,
