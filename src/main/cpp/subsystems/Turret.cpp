@@ -5,20 +5,20 @@
 using namespace frc3512;
 using namespace frc3512::Constants::Turret;
 
-void Turret::setVelocity(double velocity) {};
+void Turret::setVelocity(double velocity) {}
 
-double Turret::getEncoder() const {};
+double Turret::getEncoder() const {}
 
-void Turret::EnableController() {};
+void Turret::EnableController() {}
 
-void Turret::DisableController() {};
+void Turret::DisableController() {}
 
-bool Turret::IsControllerEnabled() {};
+bool Turret::IsControllerEnabled() {}
 
-void Turret::Reset() {};
+void Turret::Reset() {}
 
-void Turret::resetEncoder() {};
+void Turret::resetEncoder() {}
 
-double Turret::getEncoder() const {};
+double Turret::getEncoder() const {}
 
-void Turret::setState(State state) {};
+void Turret::setState(State state) {}
