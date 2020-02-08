@@ -13,6 +13,10 @@
 
 namespace frc3512 {
 
+/**
+ * 
+ * NOTE: Default values are used here.
+ */
 enum State { kIDLE = 0, kLeft, KRight, kDisabled };
 
 class Turret : public SubsystemBase, public PublishNode {
