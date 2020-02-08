@@ -2,13 +2,15 @@
 
 #pragma once
 
+#include <frc/Joystick.h>
 #include <frc/TimedRobot.h>
 
 #include "Constants.hpp"
+#include "communications/PublishNode.hpp"
 
 namespace frc3512 {
 
-class Robot : public frc::TimedRobot {
+class Robot : public frc::TimedRobot, public PublishNode {
 public:
     Robot();
 
@@ -23,6 +25,10 @@ public:
     void TeleopPeriodic() override;
 
 private:
+    frc::Joystick m_driveStick1{Constants::Robot::kDriveStick1Port};
+    frc::Joystick m_driveStick2{Constants::Robot::kDriveStick2Port};
+    frc::Joystick m_appendageStick{Constants::Robot::kAppendageStickPort};
+    frc::Joystick m_appendageStick2{Constants::Robot::kAppendageStick2Port};
 };
 
 }  // namespace frc3512
