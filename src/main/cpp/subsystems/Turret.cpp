@@ -5,9 +5,9 @@
 using namespace frc3512;
 using namespace frc3512::Constants::Turret;
 
-void Turret::setVelocity(double velocity) {}
+void Turret::setVelocity(double velocity) { m_TurretSparkMax.Set(velocity); }
 
-double Turret::getEncoder() const {}
+double Turret::getEncoder() const { m_TurretEncoder.Get(); }
 
 void Turret::EnableController() {}
 
@@ -17,8 +17,20 @@ bool Turret::IsControllerEnabled() {}
 
 void Turret::Reset() {}
 
-void Turret::resetEncoder() {}
+void Turret::resetEncoder() {
+    m_TurretEncoder.Reset();
+}
 
-double Turret::getEncoder() const {}
+void Turret::setHardLimit(frc::DigitalInput* rightHallSensor, frc::DigitalInput* leftHallSensor) {
+    m_RightHallSensor = rightHallSensor;
+    m_LeftHallSensor = leftHallSensor;
+}
 
-void Turret::setState(State state) {}
+void Turret::setSoftLimit(double forwardLimit, double reverseLimit) {
+    m_forwardLimit = forwardLimit;
+    m_reverseLimit = reverseLimit;
+}
+
+void Turret::setState(State state) { state = kCurrState; }
+
+State Turret::getState() { return kCurrState; }

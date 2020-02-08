@@ -67,6 +67,9 @@ constexpr double kLeftHallSensorPort = 1;
 constexpr int kTurretEncoderA = 1;
 constexpr int kTurretEncoderB = 0;
 
+// State Pointer
+constexpr State kCurrState;
+
 }  // namespace Turret
 
 }  // namespace frc3512::Constants
