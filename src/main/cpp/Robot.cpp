@@ -22,11 +22,11 @@ void Robot::AutonomousPeriodic() { TeleopPeriodic(); }
 
 void Robot::TeleopPeriodic() {
     if (m_appendageStick.GetRawButton(11)) {
-        m_climber.SetTransverser(TransverserState::kLeft);
+        m_climber.SetTransverser(Climber::TransverserState::kLeft);
     } else if (m_appendageStick.GetRawButton(12)) {
-        m_climber.SetTransverser(TransverserState::kRight);
+        m_climber.SetTransverser(Climber::TransverserState::kRight);
     } else {
-        m_climber.SetTransverser(TransverserState::kLeft);
+        m_climber.SetTransverser(Climber::TransverserState::kIdle);
     }
 }
 

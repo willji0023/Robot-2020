@@ -7,7 +7,6 @@
 #include <rev/CANSparkMax.h>
 
 #include "Constants.hpp"
-#include "Robot.hpp"
 #include "communications/PublishNode.hpp"
 #include "subsystems/SubsystemBase.hpp"
 
@@ -16,12 +15,8 @@ namespace frc3512 {
 class Climber : public SubsystemBase, public PublishNode {
 public:
     enum class TransverserState { kLeft, kRight, kIdle };
-    /**
-     * Constructs a Climber.
-     *
-     * @param pdp The robot's power distribution panel.
-     */
-    explicit Climber(frc::PowerDistributionPanel& pdp);
+    
+    Climber();
 
     void SetTransverser(TransverserState transverserState);
 
@@ -44,8 +39,6 @@ private:
 
     rev::CANSparkMax m_winch{Constants::Climber::kWinchPort,
                              rev::CANSparkMax::MotorType::kBrushless};
-
-    frc::PowerDistributionPanel& m_pdp;
 };
 
 }  // namespace frc3512

@@ -8,8 +8,7 @@
 using namespace frc3512;
 using namespace frc3512::Constants::Climber;
 
-Climber::Climber(frc::PowerDistributionPanel& pdp)
-    : PublishNode("Climber"), m_pdp(pdp) {}
+Climber::Climber() : PublishNode("Climber") {}
 
 void Climber::SetTransverser(TransverserState transverserState) {
     if (transverserState == TransverserState::kLeft) {
