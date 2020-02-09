@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include <limits>
+
 #include <frc/DigitalInput.h>
 #include <frc/Encoder.h>
 #include <frc/Notifier.h>
@@ -19,7 +21,8 @@ namespace frc3512 {
 enum State { kIDLE = 0, kLeft, KRight, kDisabled };
 
 /**
- * Subsystem specifically designed for the Turret (bottom, movable part of the Shooter) 
+ * Subsystem specifically designed for the Turret (bottom, movable part of the
+ * Shooter)
  */
 class Turret : public SubsystemBase, public PublishNode {
 public:
@@ -29,10 +32,10 @@ public:
 
     /**
      *  Set the velocity of the Spark Max, which is wired to the Turret.
-     * 
+     *
      *  Can be seen as a way of having it turn in a certain direction.
      *  This depends on the value given to it.
-     * 
+     *
      *  @param velocity between [-1.0 ... 1.0]
      */
     void setVelocity(double velocity) {}
@@ -49,15 +52,16 @@ public:
 
     /**
      *  Sets a hard limit for two limit switches by using DigitalInput.
-     * 
+     *
      *  @param left switch
      *  @param right switch
      */
-    void setHardLimit(frc::DigitalInput* forwardLimitSwitch, frc::DigitalInput* reverseLimitSwitch);
+    void setHardLimit(frc::DigitalInput* forwardLimitSwitch,
+                      frc::DigitalInput* reverseLimitSwitch);
 
     /**
      *  Sets a soft limit for two limit switches by using DigitalInput.
-     * 
+     *
      *  @param value for the left endpoint of the Turret
      *  @param value for the right endpoint of the Turret
      */
@@ -70,7 +74,7 @@ public:
 
     /**
      *  Returns whether is the controller is enabled or disabled.
-     * 
+     *
      *  @return bool if controller is enabled
      */
     bool IsControllerEnabled() {}
@@ -83,21 +87,23 @@ public:
 
     /**
      *  Sets the state for the Turret to execute.
-     * 
-     *  This function is designed to be used in a state machine, using a structure which
-     *  clearly defines what is executed in each state called by a certain subsystem. These states can 
-     *  be access from the Turret subsystem header file.
-     * 
+     *
+     *  This function is designed to be used in a state machine, using a
+     * structure which clearly defines what is executed in each state called by
+     * a certain subsystem. These states can be access from the Turret subsystem
+     * header file.
+     *
      *  @param State parameter from the State enum in the Turret header file
      */
     void setState(State state);
 
     /**
      *  Gets the current state in a state machine.
-     * 
-     *  This function is designed to be used in a state machine, using a structure which
-     *  clearly defines what is executed in each state called by a certain subsystem. These states can be 
-     *  access from the Turret subsystem header file.
+     *
+     *  This function is designed to be used in a state machine, using a
+     * structure which clearly defines what is executed in each state called by
+     * a certain subsystem. These states can be access from the Turret subsystem
+     * header file.
      */
     State getState();
 
@@ -107,10 +113,9 @@ public:
     double getEncoder() const;
 
 private:
-
     frc::Notifier m_notifier;
 
-    //Encoder
+    // Encoder
     frc::Encoder m_TurretEncoder{kTurretEncoderA, kTurretEncoderB};
 
     // Both hall sensors for each boundary of the turret
@@ -121,9 +126,8 @@ private:
     double m_forwardLimit = std::numeric_limits<double>::infinity();
     double m_reverseLimit = -std::numeric_limits<double>::infinity();
 
-    //Spark Max
+    // Spark Max
     rev::CANSparkMax m_TurretSparkMax{kTurretSparkMaxPort,
                                       rev::CANSparkMax::MotorType::kBrushless};
-
-};
+    };
 }  // namespace frc3512

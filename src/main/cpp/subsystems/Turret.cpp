@@ -17,11 +17,10 @@ bool Turret::IsControllerEnabled() {}
 
 void Turret::Reset() {}
 
-void Turret::resetEncoder() {
-    m_TurretEncoder.Reset();
-}
+void Turret::resetEncoder() { m_TurretEncoder.Reset(); }
 
-void Turret::setHardLimit(frc::DigitalInput* rightHallSensor, frc::DigitalInput* leftHallSensor) {
+void Turret::setHardLimit(frc::DigitalInput* rightHallSensor,
+                          frc::DigitalInput* leftHallSensor) {
     m_RightHallSensor = rightHallSensor;
     m_LeftHallSensor = leftHallSensor;
 }

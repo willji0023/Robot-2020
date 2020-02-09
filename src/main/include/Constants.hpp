@@ -5,6 +5,7 @@
 #include <units/units.h>
 
 namespace frc3512::Constants {
+
 /**
  * Controller Base
  * NOTE: Default values are used here.
@@ -16,7 +17,7 @@ namespace Intake {
 
 /**
  *  Motor Set Values
- */ 
+ */
 constexpr double kMotorIdle = 0.0;
 constexpr double kMotorForward = 1.0;
 constexpr double kMotorReverse = -1.0;
@@ -68,7 +69,7 @@ constexpr int kTurretEncoderA = 1;
 constexpr int kTurretEncoderB = 0;
 
 // State Pointer
-constexpr State kCurrState;
+constexpr frc3512::State kCurrState = frc3512::State::kIDLE;
 
 }  // namespace Turret
 
