@@ -58,7 +58,7 @@ namespace Turret {
 */
 
 // Spark Max Port Values
-constexpr double kTurretSparkMaxPort = 0;
+constexpr int kTurretSparkMaxPort = 0;
 
 // Hall Sensor Ports
 constexpr double kRightHallSensorPort = 0;
@@ -69,7 +69,7 @@ constexpr int kTurretEncoderA = 1;
 constexpr int kTurretEncoderB = 0;
 
 // State Pointer
-constexpr frc3512::State kCurrState = frc3512::State::kIDLE;
+constexpr frc3512::TurretState kCurrState = frc3512::TurretState::kIDLE;
 
 }  // namespace Turret
 

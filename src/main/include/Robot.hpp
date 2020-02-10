@@ -33,10 +33,7 @@ public:
 
 private:
 
-    frc::Joystick m_driveStick1{kDriveStick1Port};
-    frc::Joystick m_driveStick2{kDriveStick2Port};
-    frc::Joystick m_appendageStick{kAppendageStickPort};
-    frc::Joystick m_appendageStick2{kAppendageStick2Port};
+    Turret m_turret;
 
 };
 

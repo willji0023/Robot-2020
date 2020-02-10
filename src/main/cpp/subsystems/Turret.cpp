@@ -30,6 +30,15 @@ void Turret::setSoftLimit(double forwardLimit, double reverseLimit) {
     m_reverseLimit = reverseLimit;
 }
 
-void Turret::setState(State state) { state = kCurrState; }
-
-State Turret::getState() { return kCurrState; }
+void Turret::ProcessMessage(const ButtonPacket& message) {
+    if(message.topic == "Robot/AppendageStick" && message.button == 6 &&
+        message.pressed){
+            
+    } else if (message.topic == "Robot/AppendageStick" && message.button == 6 &&
+        message.pressed){
+            
+    } else if (message.topic == "Robot/AppendageStick" && message.button == 6 &&
+        message.pressed){
+            
+    }
+}

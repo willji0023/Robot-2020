@@ -18,7 +18,7 @@ namespace frc3512 {
 /**
  *  State class which stores numerical values as "states" for the Turret to use.
  */
-enum State { kIDLE = 0, kLeft, KRight, kDisabled };
+enum TurretState { kIDLE = 0, kMostLeft, KMostRight};
 
 /**
  * Subsystem specifically designed for the Turret (bottom, movable part of the
@@ -84,33 +84,13 @@ public:
      *  using each correspoding reset statement it gives.
      */
     void Reset();
-
-    /**
-     *  Sets the state for the Turret to execute.
-     *
-     *  This function is designed to be used in a state machine, using a
-     * structure which clearly defines what is executed in each state called by
-     * a certain subsystem. These states can be access from the Turret subsystem
-     * header file.
-     *
-     *  @param State parameter from the State enum in the Turret header file
-     */
-    void setState(State state);
-
-    /**
-     *  Gets the current state in a state machine.
-     *
-     *  This function is designed to be used in a state machine, using a
-     * structure which clearly defines what is executed in each state called by
-     * a certain subsystem. These states can be access from the Turret subsystem
-     * header file.
-     */
-    State getState();
-
+    
     /**
      *  Gets encoder values from the encoder wired to the Turret.
      */
     double getEncoder() const;
+
+    void ProcessMessage(const ButtonPacket& message) override;
 
 private:
     frc::Notifier m_notifier;
