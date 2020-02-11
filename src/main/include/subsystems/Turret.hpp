@@ -10,6 +10,7 @@
 #include <rev/CANSparkMax.h>
 
 #include "Constants.hpp"
+#include "controllers/TurretController.hpp"
 #include "communications/PublishNode.hpp"
 #include "subsystems/SubsystemBase.hpp"
 
@@ -94,6 +95,9 @@ public:
 
 private:
     frc::Notifier m_notifier;
+
+    //Controller
+    
 
     // Encoder
     frc::Encoder m_TurretEncoder{kTurretEncoderA, kTurretEncoderB};
