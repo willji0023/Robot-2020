@@ -201,7 +201,7 @@ def main():
             subprocess.run(make_athena + ["deploy"])
         else:
             print(f"Arbitrary files have been found! Copying over...")
-            subprocess.run("rsync","-av",files, "lvuser@10.35.12.2:/home/lvuser")
+            subprocess.run(["rsync","-av", os.path.join(files), "lvuser@10.35.12.2:/home/lvuser"])
             print(f"Done!")
     elif args.target == "clean":
         subprocess.run(make_athena + ["clean"])
